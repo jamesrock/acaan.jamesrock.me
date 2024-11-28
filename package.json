@@ -4,17 +4,14 @@
   "description": "any card at any number",
   "private": true,
   "scripts": {
-		"sass": "node-sass --watch sass/app.scss css/app.css --style=compressed",
-    "webpack": "webpack --watch"
+    "sass": "sass --watch sass/app.scss css/app.css --style=compressed"
   },
   "keywords": [
     "magic"
   ],
   "author": "James Rock",
   "license": "ISC",
-  "devDependencies": {
-		"node-sass": "^9.0.0",
-    "webpack": "^4.40.1",
-    "webpack-cli": "^3.3.12"
+  "dependencies": {
+    "sass": "^1.81.0"
   }
 }

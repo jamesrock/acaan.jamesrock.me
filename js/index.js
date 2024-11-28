@@ -56,7 +56,7 @@
 
 		for(var suit=0;suit<maxSuit;suit++) {
 			for(var value=0;value<maxValue;value++) {
-				out.push(new Card(suits[suit], values[value], getPosition()));
+				out.push(new Card(suits[suit], values[value]));
 			};
 		};
 
@@ -171,18 +171,14 @@
 		return link;
 
 	},
-	shuffle = function(collection) {
+	shuffle = function(cards) {
 
-		return collection.sort(sorters.SHUFFLE);
+		for (let i = 0; i < cards.length; i++) {
+			let shuffle = Math.floor(Math.random() * (cards.length));
+			[cards[i], cards[shuffle]] = [cards[shuffle], cards[i]];
+		};
 
-	},
-	getPosition = function() {
-
-		var
-		index = ROCK.MATH.random(0, (positions.length-1)),
-		out = positions.splice(index, 1)[0];
-
-		return out;
+		return cards;
 
 	},
 	getCardToCut = function() {
@@ -254,24 +250,11 @@
 	namespace = getNamespace(),
 	savedGame = localStorage.getItem(namespace),
 	cardDisplayOpen = true,
-	test = window.test = function() {
-
-		var
-		randomCard = ROCK.MATH.random(0, 51),
-		randomNumber = ROCK.MATH.random(0, 51);
-
-		cardSelect.value = cards[randomCard].id;
-		numberSelect.value = randomNumber;
-
-		return this;
-
-	},
 	Card = ROCK.Object.extend({
-		constructor: function Card(suit, value, position) {
+		constructor: function Card(suit, value) {
 
 			this.suit = suit;
 			this.value = value;
-			this.position = position;
 			this.id = this.getId();
 			this.name = this.getName();
 
@@ -313,11 +296,6 @@
 
 		}
 	}),
-	sorters = {
-		SHUFFLE: ROCK.SORT.NUMBER_ASCENDING(function() {
-			return this.position;
-		})
-	},
 	suits = [
 		'C',
 		'D',
@@ -450,16 +428,5 @@
 
 	saveGame();
 	toggleCardDisplay();
-
-	/*
-
-	5C @ 14 WORKS
-	4D @ 14 WORKS
-	2C @ 41 WORKS
-	QD @ 28 WORKS
-	JH @ 28 WORKS
-	9C @ 15 WORKS
-
-	*/
 
 })();
