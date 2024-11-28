@@ -75,19 +75,6 @@
 		return out;
 
 	},
-	makePositions = function() {
-
-		var
-		out = [],
-		max = 52;
-
-		for(var i=0;i<max;i++) {
-			out.push(i);
-		};
-
-		return out;
-
-	},
 	makeCardSelect = function() {
 
 		var
@@ -329,7 +316,6 @@
 		'Q',
 		'K'
 	],
-	positions = makePositions(),
 	cards,
 	sortedCards,
 	cardsMap,
@@ -398,11 +384,6 @@
 		empty(cardDisplayWrapper).appendChild(cardToCut.toHTML());
 		toggleCardDisplay();
 
-		// console.log('diff', diff);
-		// console.log('message', message);
-		// console.log('cardToCut', cardToCut);
-		// console.log('card', card);
-
 	});
 
 	newStackButton.addEventListener('click', function() {
@@ -419,11 +400,6 @@
 
 	});
 
-	// console.log('cards', cards);
-	// console.log('cardsMap', cardsMap);
-	// console.log('positions', positions);
-	// console.log('cardSelect', cardSelect);
-	// console.log('numberSelect', numberSelect);
 	console.log('namespace', namespace);
 
 	saveGame();
